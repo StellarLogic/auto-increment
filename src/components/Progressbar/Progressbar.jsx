@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./styles.scss";
 
 const Progressbar = ({
@@ -7,16 +7,17 @@ const Progressbar = ({
   percentage = 0,
   className = "",
 }) => {
-  const [progress, setProgress] = useState(20);
+  const intervalRef = useRef();
 
-  // useEffect(() => {
-  //   for (let i = 0; i < percentage; i++) {
-  //     setProgress(progress + 1);
-  //   }
-  // }, []);
-  // console.log("percentage : ", percentage, "progress : ", progress);
+   useEffect(() => {
+    let interval = setInterval(() => setProgress(progress => progress + 1), delay);
+    
+    intervalRef.current = interval;
+  }, []);
 
-  // console.log(label, progress);
+  useEffect(()=>{
+     if (progress === percentage) clearInterval(intervalRef.current);
+  }, [progress, percentage]);
 
   return (
     <div className={`progressbar-wraper ${className}`}>
