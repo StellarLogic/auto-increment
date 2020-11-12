@@ -1,0 +1,20 @@
+.polls {
+  .label {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 13px;
+
+    .poll-title {
+      font-weight: 600;
+    }
+  }
+
+  .polls-block {
+    padding: 21px 12px;
+    background: #f8fafd;
+
+    .progressbar-wraper {
+      margin-bottom: 12px;
+    }
+  }
+}
